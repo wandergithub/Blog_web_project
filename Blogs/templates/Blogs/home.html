@@ -1,0 +1,24 @@
+{% extends 'Blogs/Base.html' %}
+{% block page_header %}
+  <h1>Posts:</h1>
+{% endblock page_header %}
+{%block content%}
+  <ul>
+    {% for post in posts %}
+    <div class="card mb-3">
+      <h4 class="card-header">
+        {{post.Title}}    
+        <small>{{post.date_added}} <a href="{%url 'Blogs:edit_post' post.id %} " class="btn btn-secondary"> Edit Post</a></small>
+      </h4>
+    <div class="card-body">
+      {{post.Text|linebreaks}}
+    </div>
+    </div>
+    {%empty%}
+    <li>Be the first one on posting!!!</li>
+    {%endfor%}
+
+  </ul>
+  <h6><a href="{% url 'Blogs:new_post' %}"> Add Post </a></h6>
+
+{%endblock content%}
